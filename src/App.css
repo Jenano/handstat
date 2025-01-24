@@ -1,0 +1,29 @@
+@media print {
+  nav, footer, button, .navigace, audio {
+    display: none;
+  }
+
+  body {
+    width: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    font-size: 12pt;
+    line-height: 1.5;
+    background: none !important;
+    color: #000;
+  }
+
+  body:before {
+    content: "Webové stránky hudební skupiny Trativod"; 
+    font-size: 24pt;
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  @page {
+    size: A4;
+    margin: 20mm;
+  }
+}
