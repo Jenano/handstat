@@ -15,7 +15,7 @@ import PopUp from "../components/agregate/PopUp";
 import MatchDetail from "../components/agregate/MatchDetail";
 
 import { getMatchesFromLocalStorage } from "../components/db/localStorageaHandler";
-import { useMatchContext } from "../components/db/hooks";
+
 import { filterMatches } from "../components/controllers/filterCoontroller";
 
 function Homepage({
@@ -33,7 +33,6 @@ function Homepage({
   };
 
   const [matches, setMatches] = useState<PlayedMatchProps[]>([]);
-  const { matchesUpdated, setMatchesUpdated } = useMatchContext();
 
   const [selectedOpponent, setSelectedOpponent] = useState("All Opponents");
   const handleOpponentChange = (value: string) => {
