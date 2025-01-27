@@ -1,6 +1,7 @@
 import plusIcon from "../../assets/elements/plus.svg";
 import DropdownPicker from "./DrpPicker";
 import { DropdownPickerProps } from "../interfaces/interfaces";
+import { Link } from "react-router-dom";
 
 function TeamSelector({
   defaultValue,
@@ -21,9 +22,12 @@ function TeamSelector({
       </div>
 
       {/* Add Button */}
-      <div className="w-8 h-8 p-2.5 bg-[#56ccf2] rounded-full flex justify-center items-center">
+      <Link
+        to={"/management"}
+        className="w-8 h-8 p-2.5 bg-[#56ccf2] rounded-full flex justify-center items-center"
+      >
         <img src={plusIcon} alt="Add" className="w-5 h-5 object-contain" />
-      </div>
+      </Link>
     </div>
   );
 }

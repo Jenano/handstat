@@ -16,6 +16,7 @@ import MatchDetail from "../components/agregate/MatchDetail";
 
 import { getMatchesFromLocalStorage } from "../components/db/localStorageaHandler";
 import { useMatchContext } from "../components/db/hooks";
+import { filterMatches } from "../components/controllers/filterCoontroller";
 
 function Homepage({
   defaultValue,
@@ -66,6 +67,7 @@ function Homepage({
   };
 
   const [activeButton, setActiveButton] = useState("All");
+
   useEffect(() => {
     console.log(
       activeButton +
@@ -76,22 +78,17 @@ function Homepage({
         " " +
         defaultValue
     );
-    const fetchedMatches = getMatchesFromLocalStorage("playedMatches");
-    console.log(fetchedMatches + "newload");
-    setMatches(fetchedMatches); // tady se dolá funkce ktrá vezme z local storage
+
+    setMatches(
+      filterMatches(
+        getMatchesFromLocalStorage("playedMatches"),
+        selectedOpponent,
+        pickedDate,
+        activeButton
+      )
+    );
+    console.log("tymy filtrů");
   }, [activeButton, selectedOpponent, pickedDate]);
-
-  useEffect(() => {
-    if (matchesUpdated) {
-      // Re-fetch matches from local storage
-      const fetchedMatches = getMatchesFromLocalStorage("playedMatches");
-      console.log(fetchedMatches + "matchesUpadted");
-      setMatches(fetchedMatches);
-
-      // Reset the flag
-      setMatchesUpdated(false);
-    }
-  }, [matchesUpdated]);
 
   return (
     <>

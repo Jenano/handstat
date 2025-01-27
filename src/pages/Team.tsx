@@ -13,7 +13,8 @@ import {
 import Header from "../components/primary/Header";
 import PopUp from "../components/agregate/PopUp";
 import PlayerDetail from "../components/agregate/PlayerDetail";
-import { getFromLocalStorage } from "../components/db/localStorageaHandler";
+import { getPlayersFromLocalStorage } from "../components/db/localStorageaHandler";
+import { filterAndOrderPlayers } from "../components/controllers/filterCoontroller";
 
 function Team({
   defaultValue,
@@ -75,8 +76,15 @@ function Team({
   useEffect(() => {
     console.log(activeButton + " " + selectedPostition + " " + selectedOrder);
 
-    const fetchedPlayers = getFromLocalStorage<PlayerData[]>("players", []);
-    setPlayerData(fetchedPlayers);
+    setPlayerData(
+      filterAndOrderPlayers(
+        getPlayersFromLocalStorage("players"),
+        activeButton,
+        selectedPostition,
+        selectedOrder
+      )
+    );
+    console.log("hraciPodle filtrů");
   }, [activeButton, selectedOrder, selectedPostition, defaultValue]);
 
   //Toto už se nemění <- harddoded
